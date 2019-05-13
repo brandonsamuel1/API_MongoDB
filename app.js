@@ -20,3 +20,15 @@ const articleSchema = {
 };
 
 const Article = mongoose.model("Article", articleSchema);
+
+
+app.get('/api/articles', (req, res) => {
+    Article.find({}, function(err, foundArticle) {
+        res.send(foundArticle);
+    });
+});
+
+
+app.listen(8080, (req, res) => {
+    console.log('Server started on port 8080...')
+});
