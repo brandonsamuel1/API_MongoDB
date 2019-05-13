@@ -52,6 +52,17 @@ app.post('/api/articles', (req, res) => {
 });
 
 
+app.delete('/api/articles', (req, res) => {
+    Article.deleteMany({}, function(err) {
+        if(!err) {
+            res.send('Successfuly deleted all articles!');
+        } else {
+            res.send(err);
+        };
+    });
+});
+
+
 app.listen(8080, (req, res) => {
     console.log('Server started on port 8080...')
 });
