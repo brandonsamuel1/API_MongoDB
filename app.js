@@ -88,6 +88,21 @@ app.put('/api/articles/:articleTitle', (req, res) => {
 });
 
 
+app.patch('/api/articles/:articleTitle', (req, res) => {
+    Article.update(
+        {title: req.params.articleTitle}, 
+        {$set: req.body},
+        function(err) {
+            if(!err) {
+                res.send('Successfully updated article');
+            } else {
+                res.send(err);
+            }
+        }
+    );
+});
+
+
 app.listen(8080, (req, res) => {
     console.log('Server started on port 8080...')
 });
