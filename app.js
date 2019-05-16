@@ -63,6 +63,17 @@ app.delete('/api/articles', (req, res) => {
 });
 
 
+app.get('/api/articles/:articleTitle', (req, res) => {
+    Article.findOne({title: req.params.articleTitle}, function(err, foundArticle) {
+        if(!err) {
+            res.send(foundArticle);
+        } else {
+            res.send(err)   
+        };
+    });
+});
+
+
 app.listen(8080, (req, res) => {
     console.log('Server started on port 8080...')
 });
