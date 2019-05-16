@@ -103,6 +103,14 @@ app.patch('/api/articles/:articleTitle', (req, res) => {
 });
 
 
+app.delete('/api/articles/:articleTitle', (req, res) => {
+    Article.deleteOne({title: req.params.articleTitle}, function(err) {
+        if(!err) {
+            res.send('Successfully deleted the article!');
+        }
+    });
+});
+
 app.listen(8080, (req, res) => {
     console.log('Server started on port 8080...')
 });
