@@ -22,6 +22,8 @@ const articleSchema = {
 const Article = mongoose.model("Article", articleSchema);
 
 
+// GET ALL ARTICLES
+
 app.get('/api/articles', (req, res) => {
     Article.find({}, function(err, foundArticle) {
         if(!err) {
@@ -32,6 +34,8 @@ app.get('/api/articles', (req, res) => {
     });
 });
 
+
+// ADD A NEW ARTICLE
 
 app.post('/api/articles', (req, res) => {
     var title = req.body.title;
@@ -52,6 +56,7 @@ app.post('/api/articles', (req, res) => {
 });
 
 
+// DELETE AN ARTICLE
 app.delete('/api/articles', (req, res) => {
     Article.deleteMany({}, function(err) {
         if(!err) {
@@ -63,6 +68,7 @@ app.delete('/api/articles', (req, res) => {
 });
 
 
+// GET A SPECIFIC ARTICLE
 app.get('/api/articles/:articleTitle', (req, res) => {
     Article.findOne({title: req.params.articleTitle}, function(err, foundArticle) {
         if(!err) {
@@ -74,6 +80,7 @@ app.get('/api/articles/:articleTitle', (req, res) => {
 });
 
 
+// UPDATE A SPECIFIC ARTICLE
 app.put('/api/articles/:articleTitle', (req, res) => {
     Article.update(
         {title: req.params.articleTitle}, 
@@ -88,6 +95,7 @@ app.put('/api/articles/:articleTitle', (req, res) => {
 });
 
 
+// UPDATE A SPECIFIC ARTICLE
 app.patch('/api/articles/:articleTitle', (req, res) => {
     Article.update(
         {title: req.params.articleTitle}, 
@@ -103,6 +111,7 @@ app.patch('/api/articles/:articleTitle', (req, res) => {
 });
 
 
+// DELETE A SPECIFIC ARTICLE
 app.delete('/api/articles/:articleTitle', (req, res) => {
     Article.deleteOne({title: req.params.articleTitle}, function(err) {
         if(!err) {
